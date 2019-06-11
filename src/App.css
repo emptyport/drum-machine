@@ -1,0 +1,55 @@
+#display {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#pad {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 300px;
+  margin: auto;
+  width: 300px;
+}
+
+.drum-pad {
+  border: 1px solid black;
+  position: relative;
+  text-align: center;
+}
+
+.drum-pad:active {
+  background-color: red;
+}
+
+.pad-label {
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.active {
+  animation: ripple 100ms ease-out forwards;
+}
+
+@keyframes ripple {
+  0% {
+    background-image: radial-gradient(circle at center, red 0%, white 0%);
+  }
+  25% {
+    background-image: radial-gradient(circle at center, red 25%, white 25%);
+  }
+  50% {
+    background-image: radial-gradient(circle at center, red 50%, white 50%);
+  }
+  75% {
+    background-image: radial-gradient(circle at center, red 75%, white 75%);
+  }
+  100% {
+    background-image: radial-gradient(circle at center, red 100%, white 100%);
+  }
+}

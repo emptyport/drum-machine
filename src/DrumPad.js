@@ -10,6 +10,8 @@ class DrumPad extends Component {
 
     this.playAudio = this.playAudio.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.addActiveClass = this.addActiveClass.bind(this);
+    this.removeActiveClass = this.removeActiveClass.bind(this);
   }
 
   componentDidMount() {
@@ -20,9 +22,19 @@ class DrumPad extends Component {
     document.removeEventListener('keydown', this.handleKeyPress);
   }
 
+  addActiveClass() {
+    document.getElementById(this.props.title).classList.add('active');
+  }
+
+  removeActiveClass() {
+    document.getElementById(this.props.title).classList.remove('active');
+  }
+
   handleKeyPress(e) {
     if(e.keyCode === parseInt(this.props.keyCode)) {
       this.playAudio();
+      this.addActiveClass();
+      setTimeout(() => this.removeActiveClass(), 200);
     }
   }
 
@@ -36,7 +48,9 @@ class DrumPad extends Component {
   render() {
     return (
       <div className="drum-pad" id={this.props.title} onClick={this.playAudio}>
-        {this.props.keyMap}
+        <div className="pad-label">
+          {this.props.keyMap}
+        </div>
         <audio className="clip" id={this.props.keyMap} src={this.props.audioURL} />
       </div>
     )
